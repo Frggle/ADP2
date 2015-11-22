@@ -6,6 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import adt.implementations.AdtArrayImpl;
@@ -20,13 +23,15 @@ public class NumGenerator {
 	// TODO: nach dem implementieren entfernen. Nur zum Testen
 	public static void main(String args[]) {
 		NumGenerator gen = new NumGenerator();
-		gen.sortNum("test", 10);
+		gen.sortNum("test", 10, false);
 		
-		AdtArray array =gen.readNum("test");
+		AdtArray array = gen.readNum("test");
 		System.err.println(array.getA(0));
-		System.err.println(array.getA(array.lengthA()-1));
+		System.err.println(array.getA(array.lengthA() - 1));
 		System.err.println(array.lengthA());
 	}
+	
+	// TODO: sortNum Methoden haben zu viel Redundanz -> ueberarbeiten
 	
 	/**
 	 * Erzeugt eine Datei mit der angegebenen Anzahl an zufaelligen Zahlen. Die Zahlen werden hintereinander weg
@@ -69,13 +74,66 @@ public class NumGenerator {
 		}
 	}
 	
+	/**
+	 * Erzeugt eine Datei mit der angegebenen Anzahl in sortierter Reihenfolge. Die Zahlen werden hintereinander weg
+	 * geschrieben und durch ein Leerzeichen getrennt. Die Range der zufaellig generierten Zahlen ist 1..(quantity * 5)
+	 * @param filename, Dateiname (Endung *.dat wird automatisch ergaenzt)
+	 * @param quantity, die Anzahl der zufaellig generierten Zahlen
+	 * @param desc, true = absteigend sortiert; false = aufsteigend sortiert
+	 */
 	public void sortNum(String filename, int quantity, boolean desc) {
 		
+		File file = new File(filename + ".dat");
+		if(file.exists()) {
+			System.err.println("Die Datei existiert bereits");
+		} else {
+			try {
+				file.createNewFile();
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+			BufferedWriter bw = null;
+			try {
+				FileWriter fw = new FileWriter(file);
+				bw = new BufferedWriter(fw);
+				
+				ThreadLocalRandom random = ThreadLocalRandom.current();
+				List<Integer> list = new ArrayList<Integer>();
+				for(int i = 1; i <= quantity; i++) {
+					list.add(random.nextInt(1, quantity * 5));
+				}
+				
+				Collections.sort(list);
+				
+				if(desc) {
+					Collections.reverse(list);
+					for(int i = 1; i < list.size(); i++) {
+						bw.write(String.valueOf(list.get(i)) + " ");
+					}
+					bw.write(String.valueOf(list.get(list.size() - 1)));
+				} else {
+					for(int i = 1; i < list.size(); i++) {
+						bw.write(String.valueOf(list.get(i)) + " ");
+					}
+					bw.write(String.valueOf(list.get(list.size() - 1)));
+				}
+				
+				System.err.println("Die Datei " + filename + ".dat wurde erfolgreich erstellt");
+			} catch(IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					bw.close();
+				} catch(IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 	/**
-	 * Liest die Datei ein und fuegt die Zahlen dem ADTArray Objekt hinzu.
-	 * Die Datei muss mit WhiteSpaces geschrieben sein -> zwischen zwei Integer 
+	 * Liest die Datei ein und fuegt die Zahlen dem ADTArray Objekt hinzu. Die Datei muss mit WhiteSpaces geschrieben
+	 * sein -> zwischen zwei Integer.
 	 * @param filename, der Dateiname (die Endung *.dat wurde automatisch ergaenzt)
 	 * @return AdtArray, ein ADTArray Objekt
 	 */
