@@ -11,10 +11,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
+import sort.algorithms.InsertionSort;
 import adt.implementations.AdtArrayImpl;
 import adt.interfaces.AdtArray;
 
 public class NumGenerator {
+	/**
+	 * InsertionSort mit zahlen.dat = 1.530.204 ms
+	 * QuickSort mit zahlen.dat (mit InsertionSort Messung) = XY ms
+	 * QuickSort mit zahlen.dat (ohne InsertionSort Messung) = XY ms
+	 */
+	
 	
 	// TODO: entfernen, weil Methoden static?!
 	public NumGenerator() {
@@ -23,12 +30,24 @@ public class NumGenerator {
 	// TODO: nach dem implementieren entfernen. Nur zum Testen
 	public static void main(String args[]) {
 		NumGenerator gen = new NumGenerator();
-		gen.sortNum("test", 10, false);
+//		gen.sortNum("test", 10);
 		
 		AdtArray array = gen.readNum("test");
-		System.err.println(array.getA(0));
-		System.err.println(array.getA(array.lengthA() - 1));
-		System.err.println(array.lengthA());
+//		System.err.println(array.getA(0));
+//		System.err.println(array.getA(array.lengthA() - 1));
+//		System.err.println(array.lengthA());
+		
+		AdtArray sort = InsertionSort.sort(array, 1, 10);
+		System.err.println(sort.getA(0));
+		System.err.println(sort.getA(1));
+		System.err.println(sort.getA(2));
+		System.err.println(sort.getA(3));
+		System.err.println(sort.getA(4));
+		System.err.println(sort.getA(5));
+		System.err.println(sort.getA(6));
+		System.err.println(sort.getA(7));
+		System.err.println(sort.getA(8));
+		System.err.println(sort.getA(9));
 	}
 	
 	// TODO: sortNum Methoden haben zu viel Redundanz -> ueberarbeiten
@@ -143,9 +162,8 @@ public class NumGenerator {
 		Scanner scanner = null;
 		try {
 			scanner = new Scanner(new FileReader(filename + ".dat"));
-			scanner.useDelimiter(" ");
-			while(scanner.hasNext()) {
-				array.setA(array.lengthA(), Integer.parseInt(scanner.next()));
+			while(scanner.hasNextInt()) {
+				array.setA(array.lengthA(), scanner.nextInt());
 			}
 		} catch(FileNotFoundException e) {
 			System.err.println("Die Datei " + filename + " wurde nicht gefunden!");
