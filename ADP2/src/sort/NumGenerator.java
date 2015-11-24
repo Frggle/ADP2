@@ -11,7 +11,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
+
 import sort.algorithms.InsertionSort;
+import sort.algorithms.QuickSort;
 import adt.implementations.AdtArrayImpl;
 import adt.interfaces.AdtArray;
 
@@ -21,33 +23,31 @@ public class NumGenerator {
 	 * QuickSort mit zahlen.dat (mit InsertionSort Messung) = XY ms
 	 * QuickSort mit zahlen.dat (ohne InsertionSort Messung) = XY ms
 	 */
-	
-	
-	// TODO: entfernen, weil Methoden static?!
-	public NumGenerator() {
-	}
+		
 	
 	// TODO: nach dem implementieren entfernen. Nur zum Testen
 	public static void main(String args[]) {
-		NumGenerator gen = new NumGenerator();
-//		gen.sortNum("test", 10);
+	
+	    sortNum("test2", 30);
 		
-		AdtArray array = gen.readNum("test");
-//		System.err.println(array.getA(0));
-//		System.err.println(array.getA(array.lengthA() - 1));
-//		System.err.println(array.lengthA());
+		AdtArray array = readNum("test2");
 		
-		AdtArray sort = InsertionSort.sort(array, 1, 10);
-		System.err.println(sort.getA(0));
-		System.err.println(sort.getA(1));
-		System.err.println(sort.getA(2));
-		System.err.println(sort.getA(3));
-		System.err.println(sort.getA(4));
-		System.err.println(sort.getA(5));
-		System.err.println(sort.getA(6));
-		System.err.println(sort.getA(7));
-		System.err.println(sort.getA(8));
-		System.err.println(sort.getA(9));
+//		AdtArray inSort = InsertionSort.sort(array, 1, 30);
+//		System.err.println("Length " + inSort.lengthA());
+//        for(int i = 0; i < inSort.lengthA(); i++) {
+//            System.err.println(inSort.getA(i));
+//        }
+		
+//		System.err.println(InsertionSort.sortRuntime(array, 1, 10));
+//		AccessCount counter = InsertionSort.sortAccessCount(array, 1, 10);
+//		System.err.println("Read: " + counter.getRead());
+//		System.err.println("Write: " + counter.getWrite()); 
+
+		AdtArray quSort = QuickSort.sort(array, "LEFT");
+		System.err.println("Length " + quSort.lengthA());
+		for(int i = 0; i < quSort.lengthA(); i++) {
+		    System.err.println(quSort.getA(i));
+		}
 	}
 	
 	// TODO: sortNum Methoden haben zu viel Redundanz -> ueberarbeiten
@@ -58,7 +58,7 @@ public class NumGenerator {
 	 * @param filename, Dateiname (Endung *.dat wird automatisch ergaenzt)
 	 * @param quantity, die Anzahl der zufaellig generierten Zahlen
 	 */
-	public void sortNum(String filename, int quantity) {
+	public static void sortNum(String filename, int quantity) {
 		
 		File file = new File(filename + ".dat");
 		if(file.exists()) {
@@ -100,7 +100,7 @@ public class NumGenerator {
 	 * @param quantity, die Anzahl der zufaellig generierten Zahlen
 	 * @param desc, true = absteigend sortiert; false = aufsteigend sortiert
 	 */
-	public void sortNum(String filename, int quantity, boolean desc) {
+	public static void sortNum(String filename, int quantity, boolean desc) {
 		
 		File file = new File(filename + ".dat");
 		if(file.exists()) {
@@ -156,7 +156,7 @@ public class NumGenerator {
 	 * @param filename, der Dateiname (die Endung *.dat wurde automatisch ergaenzt)
 	 * @return AdtArray, ein ADTArray Objekt
 	 */
-	public AdtArray readNum(String filename) {
+	public static AdtArray readNum(String filename) {
 		
 		AdtArray array = AdtArrayImpl.initA();
 		Scanner scanner = null;
@@ -170,7 +170,6 @@ public class NumGenerator {
 		} finally {
 			scanner.close();
 		}
-		
 		return array;
 	}
 }

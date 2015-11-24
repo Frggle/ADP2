@@ -98,7 +98,7 @@ public class AdtListImpl implements AdtList
     @Override
     public void delete(int pos)
     {
-        if (pos < _laenge && pos > 0)
+        if (pos <= _laenge && pos > 0)
         {
             for (int i = pos - 1; i < _laenge; i++)
             {
