@@ -1,5 +1,8 @@
 package adt.implementations;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import adt.implementations.AdtListImpl;
 import adt.interfaces.AdtArray;
 import adt.interfaces.AdtList;
@@ -73,33 +76,50 @@ public class AdtArrayImpl implements AdtArray
        return _array.laenge();
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((_array == null) ? 0 : _array.hashCode());
         return result;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
             return false;
-        if (getClass() != obj.getClass())
+        if (!(obj instanceof AdtArrayImpl))
             return false;
         AdtArrayImpl other = (AdtArrayImpl) obj;
-        if (_array == null)
-        {
+        
+        if(other.lengthA() != this.lengthA()) {
+            return false;
+        }
+        List<Integer> otherAsList = new ArrayList<Integer>();
+        List<Integer> thisAsList = new ArrayList<Integer>();
+        for(int i = 0; i < other.lengthA(); i++) {
+            otherAsList.add(other.getA(i));
+        }
+        for(int i = 0; i < this.lengthA(); i++) {
+            thisAsList.add(this.getA(i));
+        }
+        if(!otherAsList.equals(thisAsList)) {
+            return false;
+        }
+        
+        if (_array == null) {
             if (other._array != null)
                 return false;
         } else if (!_array.equals(other._array))
             return false;
         return true;
     }
-    
-    
 }

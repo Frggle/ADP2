@@ -43,7 +43,11 @@ public class QuickSort {
             return (left + right) / 2;
         } else {
             ThreadLocalRandom random = ThreadLocalRandom.current();
-            return numbers.getA(random.nextInt(0, numbers.lengthA()));
+            if(numbers.lengthA() == 0) {
+                return 0;
+            } else {
+                return numbers.getA(random.nextInt(0, numbers.lengthA()));
+            }
         }
     }
 
@@ -85,7 +89,7 @@ public class QuickSort {
         AdtArray temp = null;
         boolean allEquals = allEquals(leftArray);
         if (leftArray.lengthA() < 12 || allEquals) {
-            if (!allEquals) {
+            if(!allEquals && leftArray.lengthA() > 0) {
                 temp = InsertionSort.sort(leftArray, 1, leftArray.lengthA());
             } else {
                 temp = leftArray;
@@ -99,7 +103,7 @@ public class QuickSort {
         }
         allEquals = allEquals(rightArray);
         if (rightArray.lengthA() < 12 || allEquals) {
-            if (!allEquals) {
+            if (!allEquals && rightArray.lengthA() > 0) {
                 temp = InsertionSort.sort(rightArray, 1, rightArray.lengthA());
             } else {
                 temp = rightArray;
@@ -159,7 +163,7 @@ public class QuickSort {
         AdtArray temp = null;
         boolean allEquals = allEquals(leftArray);
         if (leftArray.lengthA() < 12 || allEquals) {
-            if (!allEquals) {
+            if (!allEquals && leftArray.lengthA() > 0) {
                 long start = System.currentTimeMillis();
                 temp = InsertionSort.sort(leftArray, 1, leftArray.lengthA());
                 insertionSortRuntime.add(System.currentTimeMillis() - start);
@@ -175,7 +179,7 @@ public class QuickSort {
         }
         allEquals = allEquals(rightArray);
         if (rightArray.lengthA() < 12) {
-            if (!allEquals) {
+            if (!allEquals && rightArray.lengthA() > 0) {
                 long start = System.currentTimeMillis();
                 temp = InsertionSort.sort(rightArray, 1, rightArray.lengthA());
                 insertionSortRuntime.add(System.currentTimeMillis() - start);
@@ -231,7 +235,7 @@ public class QuickSort {
         AdtArray temp = null;
         boolean allEquals = allEqualsWithAccessCount(leftArray);
         if (leftArray.lengthA() < 12 || allEquals) {
-            if (!allEquals) {
+            if (!allEquals && leftArray.lengthA() > 0) {
                 temp = InsertionSort.sort(leftArray, 1, leftArray.lengthA());
             } else {
                 temp = leftArray;
@@ -246,7 +250,7 @@ public class QuickSort {
         }
         allEquals = allEqualsWithAccessCount(rightArray);
         if (rightArray.lengthA() < 12 || allEquals) {
-            if (!allEquals) {
+            if (!allEquals && rightArray.lengthA() > 0) {
                 temp = InsertionSort.sort(rightArray, 1, rightArray.lengthA());
             } else {
                 temp = rightArray;

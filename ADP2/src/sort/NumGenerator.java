@@ -35,30 +35,7 @@ public class NumGenerator {
 	// TODO: nach dem implementieren entfernen. Nur zum Testen
 	public static void main(String args[]) {
 	
-	    sortNum("test3", 820);
-		
-		AdtArray array = readNum("test3");
-		
-//		AdtArray inSort = InsertionSort.sort(array, 1, array.lengthA());
-//		System.err.println("Length " + inSort.lengthA());
-//        for(int i = 0; i < inSort.lengthA(); i++) {
-//            System.err.println(inSort.getA(i));
-//        }
-		
-//		System.err.println(InsertionSort.sortRuntime(array, 1, 10));
-//		AccessCount counter = InsertionSort.sortAccessCount(array, 1, 10);
-//		System.err.println("Read: " + counter.getRead());
-//		System.err.println("Write: " + counter.getWrite()); 
-
-//		AdtArray quSort = QuickSort.sort(array, "MEDIANOF3");
-//		System.err.println("Length " + quSort.lengthA());
-//		for(int i = 0; i < quSort.lengthA(); i++) {
-//		    System.err.println(quSort.getA(i));
-//		}
-		
-		System.err.println(QuickSort.sortAccessCount(array, "MEDIANOF3").getAccessCount());
-		
-//		System.err.println("Zeit: " + QuickSort.sortRuntime(array, "MEDIANOF3"));
+	 NumGenerator.sortNum("testAlreadySortedDesc_30", 30, true);
 	}
 	
 	// TODO: sortNum Methoden haben zu viel Redundanz -> ueberarbeiten
