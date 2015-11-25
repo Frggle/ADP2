@@ -19,20 +19,27 @@ import adt.interfaces.AdtArray;
 
 public class NumGenerator {
 	/**
+	 * Marc
 	 * InsertionSort mit zahlen.dat = 1.530.204 ms
 	 * QuickSort mit zahlen.dat (mit InsertionSort Messung) = XY ms
 	 * QuickSort mit zahlen.dat (ohne InsertionSort Messung) = XY ms
+	 * 
+	 * Constantin
+	 * InsertionSort mit zahlen.dat = 622.092 ms
+     * QuickSort mit zahlen.dat (mit InsertionSort Messung) = XY ms
+     * QuickSort mit zahlen.dat (ohne InsertionSort Messung) = XY ms
+     * 
 	 */
 		
 	
 	// TODO: nach dem implementieren entfernen. Nur zum Testen
 	public static void main(String args[]) {
 	
-	    sortNum("test2", 30);
+	    sortNum("test3", 820);
 		
-		AdtArray array = readNum("test2");
+		AdtArray array = readNum("test3");
 		
-//		AdtArray inSort = InsertionSort.sort(array, 1, 30);
+//		AdtArray inSort = InsertionSort.sort(array, 1, array.lengthA());
 //		System.err.println("Length " + inSort.lengthA());
 //        for(int i = 0; i < inSort.lengthA(); i++) {
 //            System.err.println(inSort.getA(i));
@@ -43,11 +50,15 @@ public class NumGenerator {
 //		System.err.println("Read: " + counter.getRead());
 //		System.err.println("Write: " + counter.getWrite()); 
 
-		AdtArray quSort = QuickSort.sort(array, "LEFT");
-		System.err.println("Length " + quSort.lengthA());
-		for(int i = 0; i < quSort.lengthA(); i++) {
-		    System.err.println(quSort.getA(i));
-		}
+//		AdtArray quSort = QuickSort.sort(array, "MEDIANOF3");
+//		System.err.println("Length " + quSort.lengthA());
+//		for(int i = 0; i < quSort.lengthA(); i++) {
+//		    System.err.println(quSort.getA(i));
+//		}
+		
+		System.err.println(QuickSort.sortAccessCount(array, "MEDIANOF3").getAccessCount());
+		
+//		System.err.println("Zeit: " + QuickSort.sortRuntime(array, "MEDIANOF3"));
 	}
 	
 	// TODO: sortNum Methoden haben zu viel Redundanz -> ueberarbeiten

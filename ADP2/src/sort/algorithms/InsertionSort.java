@@ -5,8 +5,19 @@ import adt.interfaces.AdtArray;
 
 public class InsertionSort {
 		
+    /**
+     * Sortiert ein Array aufsteigend in einem bestimmten Bereich.
+     * 
+     * @param numbers, das, aufsteigend, zu sortierende Array
+     * @param startIndex, der StartIndex ab wo sortiert werden soll
+     * @param endIndex, der EndIndex bis wo sortiert werden soll
+     * @return AdtArray, das destruktiv sortierte Array
+     */
 	public static AdtArray sort(AdtArray numbers, int startIndex, int endIndex) {
-		for(int i = startIndex; i < endIndex; i++) {
+		if(numbers.lengthA() == 0) {
+		    return numbers;
+		}
+	    for(int i = startIndex; i < endIndex; i++) {
 			int temp = numbers.getA(i);
 			int j;
 			
@@ -19,6 +30,14 @@ public class InsertionSort {
 		return numbers;
 	}
 	
+	/**
+	 * Sortiert ein Array und misst die Laufzeit in Millisec
+	 * 
+	 * @param numbers, das, aufsteigend, zu sortierende Array
+	 * @param startIndex, der StartIndex ab wo sortiert werden soll
+	 * @param endIndex, der EndIndex bis wo sortiert werden soll
+	 * @return Long, die Laufzeit in Millisec
+	 */
 	public static long sortRuntime(AdtArray numbers, int startIndex, int endIndex) {
 	    final long timeStart = System.currentTimeMillis(); 
         sort(numbers, startIndex, endIndex);
@@ -26,6 +45,14 @@ public class InsertionSort {
 	    return timeEnd - timeStart;
 	}
 	
+	/**
+	 * Sortiert ein Array und zaehlt die Lese- und Schreibzugriffe
+	 * 
+     * @param numbers, das, aufsteigend, zu sortierende Array
+     * @param startIndex, der StartIndex ab wo sortiert werden soll
+     * @param endIndex, der EndIndex bis wo sortiert werden soll
+	 * @return AccessCount, die Zugriffswerte
+	 */
 	public static AccessCount sortAccessCount(AdtArray numbers, int startIndex, int endIndex) {
 	    int readAccessCount = 0;
 	    int writeAccessCount = 0;
