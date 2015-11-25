@@ -1,11 +1,10 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
-
 import sort.NumGenerator;
 import sort.algorithms.QuickSort;
+import adt.implementations.AdtArrayImpl;
 import adt.interfaces.AdtArray;
 
 public class QuickSortTests {
@@ -15,9 +14,15 @@ public class QuickSortTests {
     @Test
     public void testAllEqualsANDRandom() {
         AdtArray inArray = NumGenerator.readNum("testAllEquals_70");
-        AdtArray sortArray = QuickSort.sort(inArray, "RANDOM");
         
-        assertEquals(inArray, sortArray);
+        AdtArray tmpArray = AdtArrayImpl.initA();
+        for(int i = 0; i < inArray.lengthA(); i++) {
+        	tmpArray.setA(tmpArray.lengthA(), inArray.getA(i));
+        }
+        
+        QuickSort.sort(inArray, "RANDOM");
+        
+        assertEquals(inArray, tmpArray);
     }
     
     /**
@@ -26,9 +31,15 @@ public class QuickSortTests {
     @Test
     public void testAllEqualsANDMedianOf3() {
         AdtArray inArray = NumGenerator.readNum("testAllEquals_70");
-        AdtArray sortArray = QuickSort.sort(inArray, "MEDIANOF3");
         
-        assertEquals(inArray, sortArray);
+        AdtArray tmpArray = AdtArrayImpl.initA();
+        for(int i = 0; i < inArray.lengthA(); i++) {
+        	tmpArray.setA(tmpArray.lengthA(), inArray.getA(i));
+        }
+        
+        QuickSort.sort(inArray, "MEDIANOF3");
+        
+        assertEquals(inArray, tmpArray);
     }
     
     /**
@@ -37,9 +48,15 @@ public class QuickSortTests {
     @Test
     public void testAlreadySortedANDRandom() {
         AdtArray inArray = NumGenerator.readNum("testAlreadySorted_30");
-        AdtArray sortArray = QuickSort.sort(inArray, "RANDOM");
         
-        assertEquals(inArray, sortArray);
+        AdtArray tmpArray = AdtArrayImpl.initA();
+        for(int i = 0; i < inArray.lengthA(); i++) {
+        	tmpArray.setA(tmpArray.lengthA(), inArray.getA(i));
+        }
+        
+        QuickSort.sort(inArray, "RANDOM");
+        
+        assertEquals(inArray, tmpArray);
     }
     
     /**
@@ -48,9 +65,15 @@ public class QuickSortTests {
     @Test
     public void testAlreadySortedANDMedianOf3() {
         AdtArray inArray = NumGenerator.readNum("testAlreadySorted_30");
-        AdtArray sortArray = QuickSort.sort(inArray, "MEDIANOF3");
         
-        assertEquals(inArray, sortArray);
+        AdtArray tmpArray = AdtArrayImpl.initA();
+        for(int i = 0; i < inArray.lengthA(); i++) {
+        	tmpArray.setA(tmpArray.lengthA(), inArray.getA(i));
+        }
+        
+        QuickSort.sort(inArray, "MEDIANOF3");
+        
+        assertEquals(inArray, tmpArray);
     }
     
     /**
@@ -59,9 +82,15 @@ public class QuickSortTests {
     @Test
     public void testEmptyANDRandom() {
         AdtArray inArray = NumGenerator.readNum("testEmpty_0");
-        AdtArray sortArray = QuickSort.sort(inArray, "RANDOM");
         
-        assertEquals(inArray, sortArray);
+        AdtArray tmpArray = AdtArrayImpl.initA();
+        for(int i = 0; i < inArray.lengthA(); i++) {
+        	tmpArray.setA(tmpArray.lengthA(), inArray.getA(i));
+        }
+        
+        QuickSort.sort(inArray, "RANDOM");
+        
+        assertEquals(inArray, tmpArray);
     }
     
     /**
@@ -70,9 +99,15 @@ public class QuickSortTests {
     @Test
     public void testEmptyANDMedianOf3() {
         AdtArray inArray = NumGenerator.readNum("testEmpty_0");
-        AdtArray sortArray = QuickSort.sort(inArray, "MEDIANOF3");
+
+        AdtArray tmpArray = AdtArrayImpl.initA();
+        for(int i = 0; i < inArray.lengthA(); i++) {
+        	tmpArray.setA(tmpArray.lengthA(), inArray.getA(i));
+        }
         
-        assertEquals(inArray, sortArray);
+        QuickSort.sort(inArray, "MEDIANOF3");
+        
+        assertEquals(inArray, tmpArray);
     }
     
     /**
@@ -81,13 +116,20 @@ public class QuickSortTests {
     @Test
     public void testAlreadySortedDescANDRandom() {
         AdtArray inArray = NumGenerator.readNum("testAlreadySortedDesc_30");
-        AdtArray sortArray = QuickSort.sort(inArray, "RANDOM");
         
+        AdtArray tmpArray = AdtArrayImpl.initA();
         for(int i = 0; i < inArray.lengthA(); i++) {
-            System.err.println(inArray.getA(i) + " - " + sortArray.getA(i));
+        	tmpArray.setA(tmpArray.lengthA(), inArray.getA(i));
         }
         
-        assertEquals(inArray, sortArray);
+        AdtArray sortArray = QuickSort.sort(inArray, "RANDOM");
+        
+        AdtArray reverseInArray = AdtArrayImpl.initA();
+        for(int i = 0; i < sortArray.lengthA(); i++) {
+        	reverseInArray.setA(sortArray.lengthA() - 1 - i, sortArray.getA(i));
+        }
+        
+        assertEquals(tmpArray, reverseInArray);
     }
 
     /**
@@ -96,9 +138,20 @@ public class QuickSortTests {
     @Test
     public void testAlreadySortedDescANDMedianOf3() {
         AdtArray inArray = NumGenerator.readNum("testAlreadySortedDesc_30");
+        
+        AdtArray tmpArray = AdtArrayImpl.initA();
+        for(int i = 0; i < inArray.lengthA(); i++) {
+        	tmpArray.setA(tmpArray.lengthA(), inArray.getA(i));
+        }
+        
         AdtArray sortArray = QuickSort.sort(inArray, "MEDIANOF3");
         
-        assertEquals(inArray, sortArray);
+        AdtArray reverseInArray = AdtArrayImpl.initA();
+        for(int i = 0; i < sortArray.lengthA(); i++) {
+        	reverseInArray.setA(sortArray.lengthA() - 1 - i, sortArray.getA(i));
+        }
+        
+        assertEquals(tmpArray, reverseInArray);
     }
 
 }
