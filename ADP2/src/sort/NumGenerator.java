@@ -11,9 +11,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
-
-import sort.algorithms.InsertionSort;
-import sort.algorithms.QuickSort;
 import adt.implementations.AdtArrayImpl;
 import adt.interfaces.AdtArray;
 
