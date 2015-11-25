@@ -76,14 +76,16 @@ public class QuickSortTests {
         assertEquals(inArray, tmpArray);
     }
     
-//    @Test
-//    public void test() {
-//    	NumGenerator.sortNum("test", 20);
-//    	
-//    	AdtArray array = NumGenerator.readNum("test");
+    @Test
+    public void test() {
+    	NumGenerator.sortNum("test", 20);
+    	
+    	AdtArray array = NumGenerator.readNum("test");
 //    	QuickSort.sort(array, "MEDIANOF3");
 //    	QuickSort.sort(array, "RANDOM");
-//    }
+//    	QuickSort.sort(array, "LEFT");
+    	QuickSort.sort(array, "RIGHT");
+    }
     
     /**
      * Ein leeres Array

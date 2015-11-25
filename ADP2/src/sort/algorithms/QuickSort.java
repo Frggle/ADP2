@@ -23,9 +23,9 @@ public class QuickSort {
 	 */
 	private static int getPivot(AdtArray numbers, int left, int right) {
 		if(MethodPivot.valueOf(_pivot) == MethodPivot.LEFT) {
-			return numbers.getA(left);
+			return left;
 		} else if(MethodPivot.valueOf(_pivot) == MethodPivot.RIGHT) {
-			return numbers.getA(right);
+			return right;
 		} else if(MethodPivot.valueOf(_pivot) == MethodPivot.MEDIANOF3) {
 			return (left + right) / 2;
 		} else if(MethodPivot.valueOf(_pivot) == MethodPivot.RANDOM) {
@@ -67,33 +67,39 @@ public class QuickSort {
 	private static void recQuickSort(AdtArray numbers, int left, int right) {
 		int size = right - left + 1;
 		if(size < 12) {
-			InsertionSort.sort(numbers, left, right);
+			InsertionSort.sort(numbers, left, right + 1);
 			for(int i = 0; i < numbers.lengthA(); i++) {
 				System.err.print(numbers.getA(i) + " - ");
 			}
 			System.err.println();
 		}
 		else {
-			int median = split(numbers, left, right);
-			int partition = partitionIt(numbers, left, right, median);
+			int pivot = split(numbers, left, right);
+			int partition = partitionIt(numbers, left, right, pivot);
 			recQuickSort(numbers, left, partition - 1);
 			recQuickSort(numbers, partition + 1, right);
 		}
 	}
 	
 	private static int split(AdtArray numbers, int left, int right) {
-		int value = getPivot(numbers, left, right);
+		int pivot = getPivot(numbers, left, right);
 		
-		if(numbers.getA(left) > numbers.getA(value))
-			swap(numbers, left, value);
+		if(numbers.getA(left) > numbers.getA(pivot))
+			swap(numbers, left, pivot);
 		
 		if(numbers.getA(left) > numbers.getA(right))
 			swap(numbers, left, right);
 		
-		if(numbers.getA(value) > numbers.getA(right))
-			swap(numbers, value, right);
+		if(numbers.getA(pivot) > numbers.getA(right))
+			swap(numbers, pivot, right);
 		
-		swap(numbers, value, right - 1);
+		swap(numbers, pivot, right - 1);
+		
+		for(int i = 0; i < numbers.lengthA(); i++) {
+			System.err.print(numbers.getA(i) + " - ");
+		}
+		System.err.println();
+		
 		return numbers.getA(right - 1);
 	}
 	
@@ -103,6 +109,7 @@ public class QuickSort {
 		numbers.setA(dex2, temp);
 	}
 	
+	/* Schaufelt alle Elemente kleiner dem Pivot nach links vom Pivot */
 	private static int partitionIt(AdtArray numbers, int left, int right, int pivot) {
 		int leftPtr = left;
 		int rightPtr = right - 1;
@@ -115,6 +122,12 @@ public class QuickSort {
 				swap(numbers, leftPtr, rightPtr);
 		}
 		swap(numbers, leftPtr, right - 1);
+		
+		for(int i = 0; i < numbers.lengthA(); i++) {
+			System.err.print(numbers.getA(i) + " - ");
+		}
+		System.err.println();
+		
 		return leftPtr;
 	}
 }
