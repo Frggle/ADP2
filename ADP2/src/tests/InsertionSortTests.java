@@ -21,7 +21,7 @@ public class InsertionSortTests {
         	tmpArray.setA(tmpArray.lengthA(), inArray.getA(i));
         }
         
-        InsertionSort.sort(inArray, 1, inArray.lengthA());
+        InsertionSort.sort(inArray, 0, inArray.lengthA() - 1);
         
         assertEquals(tmpArray, inArray);
     }
@@ -38,7 +38,7 @@ public class InsertionSortTests {
         	tmpArray.setA(tmpArray.lengthA(), inArray.getA(i));
         }
         
-        InsertionSort.sort(inArray, 1, inArray.lengthA());
+        InsertionSort.sort(inArray, 0, inArray.lengthA() - 1);
         
         assertEquals(tmpArray, inArray);
     }
@@ -55,7 +55,7 @@ public class InsertionSortTests {
         	tmpArray.setA(tmpArray.lengthA(), inArray.getA(i));
         }
         
-        InsertionSort.sort(inArray, 1, inArray.lengthA());
+        InsertionSort.sort(inArray, 0, inArray.lengthA() - 1);
         
         assertEquals(tmpArray, inArray);
     }
@@ -72,7 +72,7 @@ public class InsertionSortTests {
         	tmpArray.setA(tmpArray.lengthA(), inArray.getA(i));
         }
         
-        InsertionSort.sort(inArray, 1, inArray.lengthA());
+        InsertionSort.sort(inArray, 0, inArray.lengthA() - 1);
         
         AdtArray reverseInArray = AdtArrayImpl.initA();
         for(int i = 0; i < inArray.lengthA(); i++) {

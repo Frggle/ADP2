@@ -1,8 +1,11 @@
 package tests;
 
 import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
+
 import sort.NumGenerator;
+import sort.algorithms.QuickSort;
 import sort.algorithms.QuickSort;
 import adt.implementations.AdtArrayImpl;
 import adt.interfaces.AdtArray;
@@ -78,13 +81,17 @@ public class QuickSortTests {
     
     @Test
     public void test() {
-    	NumGenerator.sortNum("test", 20);
+    	NumGenerator.sortNum("test", 30);
     	
     	AdtArray array = NumGenerator.readNum("test");
-//    	QuickSort.sort(array, "MEDIANOF3");
-//    	QuickSort.sort(array, "RANDOM");
-//    	QuickSort.sort(array, "LEFT");
-    	QuickSort.sort(array, "RIGHT");
+//    	QuickSort_new.sort(array, "MEDIANOF3");
+//    	QuickSort_new.sort(array, "RANDOM");
+    	QuickSort.sort(array, "LEFT");
+//    	QuickSort_new.sort(array, "RIGHT");
+    	for(int i = 0; i < array.lengthA(); i++) {
+    	    System.err.print(array.getA(i) + " - ");
+    	}
+    	System.err.println();
     }
     
     /**
@@ -133,7 +140,7 @@ public class QuickSortTests {
         	tmpArray.setA(tmpArray.lengthA(), inArray.getA(i));
         }
         
-        AdtArray sortArray = QuickSort.sort(inArray, "RANDOM");
+        QuickSort.sort(inArray, "RANDOM");
         
         AdtArray reverseInArray = AdtArrayImpl.initA();
         for(int i = 0; i < sortArray.lengthA(); i++) {

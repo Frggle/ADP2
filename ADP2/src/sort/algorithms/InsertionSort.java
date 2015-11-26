@@ -13,21 +13,18 @@ public class InsertionSort {
      * @param endIndex, der EndIndex bis wo sortiert werden soll
      * @return AdtArray, das destruktiv sortierte Array
      */
-	public static AdtArray sort(AdtArray numbers, int startIndex, int endIndex) {
-		if(numbers.lengthA() == 0) {
-		    return numbers;
-		}
-	    for(int i = startIndex; i < endIndex; i++) {
+	public static void sort(AdtArray numbers, int startIndex, int endIndex) {
+		
+	    for(int i = startIndex + 1; i <= endIndex; i++) {
 			int temp = numbers.getA(i);
-			int j;
-			
-			for(j = i - 1; j >= 0 && temp < numbers.getA(j); j--) {
-				numbers.setA(j + 1, numbers.getA(j));
+			int j = i;
+						
+			while(j > startIndex && temp < numbers.getA(j - 1)){
+			    numbers.setA(j, numbers.getA(j - 1));
+			    j--;
 			}
-			numbers.setA(j + 1, temp);
+			numbers.setA(j, temp);
 		}
-	    	    
-		return numbers;
 	}
 	
 	/**
@@ -57,16 +54,19 @@ public class InsertionSort {
 	    int readAccessCount = 0;
 	    int writeAccessCount = 0;
 	    
-	    for(int i = startIndex; i < endIndex; i++) {
+	    for(int i = startIndex + 1; i <= endIndex; i++) {
             int temp = numbers.getA(i);
             readAccessCount++;
-            int j;
+            int j = i;
             
-            for(j = i - 1; j >= 0 && temp < numbers.getA(j); j--) {
-                numbers.setA(j + 1, numbers.getA(j));
+            while(j > startIndex && temp < numbers.getA(j - 1)){
+                readAccessCount++;
+                numbers.setA(j, numbers.getA(j - 1));
+                j--;
                 writeAccessCount++;
                 readAccessCount++;
             }
+            
             numbers.setA(j + 1, temp);
             writeAccessCount++;
         }
