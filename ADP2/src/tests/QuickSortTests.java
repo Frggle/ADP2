@@ -28,8 +28,6 @@ public class QuickSortTests {
 			assertEquals(inArray, tmpArray);
 		}
 	}
-
-	
 	
 	/**
 	 * Testet 70 identische Elemente

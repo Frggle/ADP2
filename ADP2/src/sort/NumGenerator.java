@@ -14,28 +14,22 @@ import java.util.concurrent.ThreadLocalRandom;
 import adt.implementations.AdtArrayImpl;
 import adt.interfaces.AdtArray;
 
+/**
+ * Der NumGenerator kann beliebig grosse Dateien erzeugen, welche mit zufaellig generierten Integer-Werten gefuellt sind.
+ * Der NumGenerator kann diese Dateien einlesen und wandelt sie in ein ADTArray (optional kann das ADT direkt sortiert erstellt werden).
+ */
 public class NumGenerator {
 	/**
 	 * Marc
 	 * InsertionSort mit zahlen.dat = 1.530.204 ms
-	 * QuickSort mit zahlen.dat (mit InsertionSort Messung) = XY ms
-	 * QuickSort mit zahlen.dat (ohne InsertionSort Messung) = XY ms
+	 * QuickSort (LEFT) mit zahlen.dat (ohne InsertionSort Messung) = 6115 ms
+	 * QuickSort (RIGHT) mit zahlen.dat (ohne InsertionSort Messung) = 2340 ms
+	 * QuickSort (MEDIANOF3) mit zahlen.dat (ohne InsertionSort Messung) = 2768 ms
+	 * QuickSort (RANDOM) mit zahlen.dat (ohne InsertionSort Messung) = 3404 ms
 	 * 
 	 * Constantin
 	 * InsertionSort mit zahlen.dat = 622.092 ms
-     * QuickSort mit zahlen.dat (mit InsertionSort Messung) = XY ms
-     * QuickSort mit zahlen.dat (ohne InsertionSort Messung) = XY ms
-     * 
 	 */
-		
-	
-	// TODO: nach dem implementieren entfernen. Nur zum Testen
-	public static void main(String args[]) {
-	
-	 NumGenerator.sortNum("testAlreadySortedDesc_30", 30, true);
-	}
-	
-	// TODO: sortNum Methoden haben zu viel Redundanz -> ueberarbeiten
 	
 	/**
 	 * Erzeugt eine Datei mit der angegebenen Anzahl an zufaelligen Zahlen. Die Zahlen werden hintereinander weg

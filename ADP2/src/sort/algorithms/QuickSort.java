@@ -19,7 +19,7 @@ public class QuickSort {
 	private static int readAccessCount = 0;
 	
 	/* List mit den Runtime-Messungen vom InsertionSort */
-	private static List<Long> runtimeInsertionSort = new ArrayList<Long>();
+	private static List<Long> runtimeInsertionSort;
 	
 	/**
 	 * Setzt das Pivot-Element nach rechts (innerhalb des aktuellen Bereichs) und gibt das Pivot-Element zurueck.
@@ -180,6 +180,7 @@ public class QuickSort {
 	 * @return die gemessene Laufzeit, exklusiv InsertionSort-Anteil, in Millisec
 	 */
 	public static long sortWithRuntime(AdtArray numbers, String pivot) {
+		runtimeInsertionSort = new ArrayList<Long>();
 		long startTime = System.currentTimeMillis();
 		_numbers = numbers;
 		_pivot = pivot;
@@ -203,9 +204,9 @@ public class QuickSort {
 	private static void quickSortWithRuntime(int ilinks, int irechts) {
 		int size = irechts - ilinks + 1;
 		if(size < 12) {
-			long startTime = System.currentTimeMillis();
+			long startTime = System.nanoTime();
 			InsertionSort.sort(_numbers, ilinks, irechts);
-			runtimeInsertionSort.add(System.currentTimeMillis() - startTime);
+			runtimeInsertionSort.add(System.nanoTime() - startTime);
 		} else {
 			int i = quickSwap(ilinks, irechts);
 			quickSortWithRuntime(ilinks, i - 1);

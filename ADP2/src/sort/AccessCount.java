@@ -1,5 +1,10 @@
 package sort;
 
+/**
+ * Eine Klasse um die Lese- und Schreibzugriffe in einem Objekt zusammenzufassen.
+ * @author Marc
+ *
+ */
 public class AccessCount {
 
     private int read = 0;
