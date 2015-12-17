@@ -9,26 +9,7 @@ import adt.implementations.AdtArrayImpl;
 import adt.interfaces.AdtArray;
 
 public class QuickSortTests {
-	
-	/**
-	 * Testet 100 zufaellige Elemente
-	 */
-	@Test
-	public void test100() {
-		for(MethodPivot pivot : MethodPivot.values()) {
-			AdtArray inArray = NumGenerator.readNum("test100");
-
-			AdtArray tmpArray = AdtArrayImpl.initA();
-			for(int i = 0; i < inArray.lengthA(); i++) {
-				tmpArray.setA(tmpArray.lengthA(), inArray.getA(i));
-			}
-			
-			QuickSort.sort(inArray, pivot.toString());
-			
-			assertEquals(inArray, tmpArray);
-		}
-	}
-	
+		
 	/**
 	 * Testet 70 identische Elemente
 	 */
